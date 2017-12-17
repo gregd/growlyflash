@@ -31,7 +31,7 @@ module Growlyflash
     # it again after refreshing a page
     def flash_to_headers
       return if @pause_growlyflash
-      if response.xhr? && growlyhash(true).size > 0
+      if growlyhash(true).size > 0
         response.headers['X-Message'] = URI.escape(growlyhash.to_json)
         growlyhash.each_key { |k| flash.discard(k) }
       end
